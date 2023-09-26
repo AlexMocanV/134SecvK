@@ -1,0 +1,39 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+long long int n,i,j,k=0,copie, x[100001],s[100001],v[100001],smax,st;
+
+int main()
+{
+    ifstream fin("secvk.in");
+    ofstream fout("secvk.out");
+    
+    fin>>n>>k;
+    copie=k;
+    for(i=1;i<=n;i++)
+    {
+        fin>>x[i];
+        s[i]=x[i]+s[i-1];
+       
+    }
+    for(i=1;i<=n;i++)
+    {
+        v[i]=s[k]-s[i-1];    
+        k++;
+    }
+    for(i=1;i<=n-copie+1;i++)
+    {
+        if(smax<=v[i])
+        {
+            st=i;
+            smax=v[i];
+        }
+    }
+    for(i=st;i<st+copie;i++)
+    {
+        fout<<x[i]<<" ";
+    }
+    
+    return 0;
+}
